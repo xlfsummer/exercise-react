@@ -1,16 +1,10 @@
 import React from "react";
 
 export default class App extends React.Component {
-    constructor(props){
-        super(props);
-
-        this.state = {
-
-        }
-    }
-
     render(){
-        return <FilterableProductList data={mockData}/>
+        return (
+            <FilterableProductList data={mockData}/>
+        )
     }
 }
 
@@ -66,7 +60,7 @@ class FilterableProductList extends React.Component {
                 <SearchBar
                     onSearchWordsChange={this.handleSearchWordsChange}
                     onStockFilterChange={this.handleStockFilterChange}
-                    />
+                />
                 <ProductList data={data}/>
             </div>
         )
@@ -129,12 +123,14 @@ class ProductList extends React.Component {
                 </thead>
                 <tbody>{
                     categoriedData.length !== 0
-                    ? categoriedData.map(cd => [
-                        <tr className="category-header">
-                            <th colSpan="2">{cd.category}</th>
-                        </tr>,
-                        cd.list.map(d=> <ProductItem data={d} key={d.name} />)
-                    ])
+                    ? categoriedData.map(cd => 
+                        <React.Fragment key={cd.category}>
+                            <tr className="category-header">
+                                <th colSpan="2">{cd.category}</th>
+                            </tr>
+                            {cd.list.map(d=> <ProductItem data={d} key={d.name} />)}
+                        </React.Fragment>
+                    )
                     : <tr><td colSpan="2">No data</td></tr>
                 }
                 </tbody>
@@ -150,7 +146,7 @@ function ProductItem (props) {
     let d = props.data;
     return (
         <tr>
-            <td className={d.stocked || "nostock"}>{d.name}</td>
+            <td className={d.stocked ? "" : "nostock"}>{d.name}</td>
             <td>{d.price}</td>
         </tr>
     )

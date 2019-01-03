@@ -6,7 +6,7 @@ class App extends Component {
     return (
       <div className="App">
        <ErrorBoundary>
-          <A></A>
+          <BuggyCommponent></BuggyCommponent>
        </ErrorBoundary>
       </div>
     );
@@ -22,8 +22,7 @@ class ErrorBoundary extends React.Component {
     }
   }
 
-  static getDerivedStateFromError(){
-    debugger;
+  static getDerivedStateFromError(err){
     return { hasError: true }
   }
 
@@ -42,12 +41,13 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-class A extends React.Component {
+class BuggyCommponent extends React.Component {
   render(){
-
-    throw new Error();
-
-    return <p>Lorem ipsum</p>
+    let boolRandom = Math.random() > 0.5;
+    if(boolRandom){
+      return <p>{(()=>{throw new Error();})()}</p>
+    }
+    return <p>Every thing goes right</p>
   }
 }
 

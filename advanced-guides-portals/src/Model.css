@@ -1,0 +1,23 @@
+.model-container{
+    position: fixed;
+    background: white;
+    width: 400px;
+    height: min-content;
+    box-shadow: 0 10px 50px rgba(0,0,0,.3);
+    z-index: 100;
+    padding: 20px;
+    top: 0;right: 0;bottom: 0;left: 0;
+    margin: auto;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.model-title{
+    margin: -20px -20px 0;
+    padding: 20px;
+    background: #efefef;
+    border-bottom: 1px solid #dedede;
+}
+.model-body{
+    margin: 20px 0;
+}
